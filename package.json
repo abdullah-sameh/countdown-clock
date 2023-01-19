@@ -1,8 +1,8 @@
 {
+  "homepage": "http://abdullah-sameh.github.io/countdown-clock",
   "name": "chatgpt-3",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://abdullah-sameh.github.io/public/index.html",
   "dependencies": {
     "@testing-library/jest-dom": "^5.1react-gh-pages6.5",
     "@testing-library/react": "^13.4.0",
