@@ -1,68 +1,31 @@
-import { useState, useEffect } from "react"
-import Button from "./Button"
+import {useState} from "react"
 
-function Nav() {
-  const [timeBoard, setTimeBoard] = useState("00:00")
-  const [backTime, setBackTime] = useState("0:00")
-  let myInterval
-
-  // useEffect(() => {
-    
-
-  // }, [Button])
+export default function Header(props) {
+  const [timerInput, setTimerInput] = useState('')
   return (
-    <div>
-      <header>
-        <nav className="container">
-          <Button
-            name="30 secs"
-            valueName="30"
-            myInterval={myInterval}
-            setTimeBoard={setTimeBoard}
-            setBackTime={setBackTime}
-          />
-          <Button
-            name="work 5"
-            valueName={5 * 60}
-            myInterval={myInterval}
-            setTimeBoard={setTimeBoard}
-            setBackTime={setBackTime}
-          />
-          <Button
-            name="snack 20"
-            valueName={20 * 60}
-            myInterval={myInterval}
-            setTimeBoard={setTimeBoard}
-            setBackTime={setBackTime}
-          />
-          <Button
-            name="lunch break"
-            valueName={60 * 60}
-            myInterval={myInterval}
-            setTimeBoard={setTimeBoard}
-            setBackTime={setBackTime}
-          />
-          {/* <input
+    <header>
+      <nav className="container">
+        <button onClick={() => props.func(20)}>20 secs</button>
+        <button onClick={() => props.func(300)}>work 5</button>
+        <button onClick={() => props.func(900)}>quick 15</button>
+        <button onClick={() => props.func(1200)}>snack 20</button>
+        <button onClick={() => props.func(3600)}>lunch break</button>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault()
+            if (timerInput !== 0) props.func(timerInput * 60)
+          }}
+        >
+          <input
             type="number"
+            value={timerInput}
+            onChange={(e) => setTimerInput(e.target.value)}
             min="0"
             max="60"
             placeholder="minutes"
-            onSubmit={() => {
-              
-            }
-            }
-          /> */}
-        </nav>
-      </header>
-
-      <main>
-        <div id="time">{timeBoard}</div>
-        <div id="time-out">
-          Be back at <span>{backTime}</span>
-        </div>
-      </main>
-    </div>
+          />
+        </form>
+      </nav>
+    </header>
   )
 }
-
-export default Nav
