@@ -6,18 +6,18 @@ import { useState } from "react"
 function App() {
   const [timeBoard, setTimeBoard] = useState("00:00")
   const [backTime, setBackTime] = useState("00:00")
-  let myInterval
+  const [intervalRef, setIntervalRef] = useState("")
 
   function func(time) {
     // if there are any interval clear it
-    clearInterval(myInterval)
+    clearInterval(intervalRef)
     display(time)
 
     const now = Date.now()
     const then = now + Number(time) * 1000
     endTime(then)
 
-    myInterval = setInterval(() => {
+    let myInterval = setInterval(() => {
       if (time === 0) {
         setBackTime("00:00")
         return clearInterval(myInterval)
@@ -25,6 +25,7 @@ function App() {
       time -= 1
       display(time)
     }, 1000)
+    setIntervalRef(myInterval)
   }
 
   function display(time) {
